@@ -1,4 +1,4 @@
-//componente LABEL + INPUT TEXT
+//component LABEL + INPUT TEXT
 //labelText <- texto do label
 //id <- id do label e input text
 export function labelInputTextName(labelText, id) {
@@ -13,6 +13,7 @@ export function labelInputTextName(labelText, id) {
 
     return [label, inputText];
 }
+
 
 // export function labelInputTextName(labelText, id) {
 //     label = document.createElement("label");
