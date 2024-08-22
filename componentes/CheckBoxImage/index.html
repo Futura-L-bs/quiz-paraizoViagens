@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Interesses de Viagem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .image-checkbox {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 200px;
+            height: 200px;
+        }
+        .image-checkbox:hover {
+            transform: translateY(-5px);
+        }
+        .image-wrapper {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .image-checkbox img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+        .image-checkbox input {
+            display: none;
+        }
+        .image-checkbox label {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+        .image-checkbox.selected .image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(244, 140, 34, 0.6); /* #F48C22 com 60% de opacidade */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Gabriel, nessa viagem, selecione o que você procura?</h2>
+    <div class="image-grid">
+        <div class="image-checkbox" onclick="toggleSelection(this)">
+            <input type="checkbox" id="pontos-turisticos" name="interesse" value="pontos-turisticos">
+            <div class="image-wrapper">
+                <img src="../../public/turismo.webp" alt="Pontos turísticos">
+            </div>
+            <label for="pontos-turisticos">Pontos turísticos</label>
+        </div>
+        
+    </div>
+
+    <script>
+        function toggleSelection(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('selected', checkbox.checked);
+            console.log(checkbox.value + ' foi ' + (checkbox.checked ? 'selecionado' : 'desmarcado'));
+        }
+    </script>
+</body>
+</html>

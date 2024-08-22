@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Numérico</title>
+    <style>
+        .numeric-input-container {
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            border: 1px solid #23242C;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .numeric-input-button {
+            background-color: transparent;
+            border: none;
+            color: #23242C;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .numeric-input-button:hover {
+            opacity: 0.7;
+        }
+        .numeric-input-field {
+            flex-grow: 1;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            padding: 10px;
+            width: 50px;
+            background-color: transparent;
+            color: #23242C;
+        }
+        .numeric-input-field::-webkit-inner-spin-button, 
+        .numeric-input-field::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .numeric-input-label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #23242C;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label class="numeric-input-label" for="peopleCount">Quantas pessoas vão te acompanhar:</label>
+        <div class="numeric-input-container">
+            <button class="numeric-input-button" onclick="changeValue(-1)">-</button>
+            <input type="number" id="peopleCount" class="numeric-input-field" value="0" min="0" readonly>
+            <button class="numeric-input-button" onclick="changeValue(1)">+</button>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('peopleCount');
+
+        function changeValue(amount) {
+            let currentValue = parseInt(input.value);
+            let newValue = currentValue + amount;
+            input.value = Math.max(0, newValue);
+        }
+    </script>
+</body>
+</html>
