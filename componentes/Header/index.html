@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabeçalho com Indicador de Etapa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .back-button {
+            color: #F29200;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .step-indicator {
+            font-weight: bold;
+            font-size: 18px;
+            color: #F29200;
+        }
+        .logo img {
+            height: 30px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="back-button" onclick="goBack(); return false;">← voltar</a>
+        <div class="step-indicator">
+            <span id="currentStep">0</span>/<span id="totalSteps">0</span>
+        </div>
+        <div class="logo">
+            <img src="../../public/logo - paraizo viagens.svg" alt="Logo">
+        </div>
+    </header>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <button onclick="nextStep()">Próxima Etapa</button>
+    </div>
+
+    <script>
+        class StepIndicator {
+            constructor(totalSteps) {
+                this.currentStep = 1; 
+                this.totalSteps = totalSteps;
+                this.currentStepElement = document.getElementById('currentStep');
+                this.totalStepsElement = document.getElementById('totalSteps');
+                this.updateDisplay();
+            }
+
+            updateDisplay() {
+                this.currentStepElement.textContent = this.currentStep;
+                this.totalStepsElement.textContent = this.totalSteps;
+            }
+
+            nextStep() {
+                if (this.currentStep < this.totalSteps) {
+                    this.currentStep++;
+                    this.updateDisplay();
+                }
+            }
+
+            previousStep() {
+                if (this.currentStep > 1) {
+                    this.currentStep--;
+                    this.updateDisplay();
+                }
+            }
+
+            setStep(step) {
+                this.currentStep = Math.max(1, Math.min(step, this.totalSteps));
+                this.updateDisplay();
+            }
+        }
+
+        // Inicialize o componente com o número total de etapas
+        const stepIndicator = new StepIndicator(15);
+
+        // Função para o botão voltar
+        function goBack() {
+            stepIndicator.previousStep();
+            console.log("Voltando para a etapa", stepIndicator.currentStep);
+        }
+
+        // Função para o botão de próxima etapa
+        function nextStep() {
+            stepIndicator.nextStep();
+            console.log("Avançando para a etapa", stepIndicator.currentStep);
+        }
+    </script>
+</body>
+</html>
