@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
+
+:root{
+    /* colors */
+    --colorPrimary: #23242C;
+    --colorSecundary: #F29200;
+    --colorMen: #a4cdfc;
+    --colorGirl: #FF8BD1;
+
+    /* font */
+    --fontPrimary: "Baloo 2", sans-serif;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: var(--colorPrimary);
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--colorSecundary); 
+    border-radius: 50px;
+}
+
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: var(--fontPrimary);
+    color: var(--colorPrimary);
+    font-weight: 500;
+    font-size: 18px;
+    outline: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #ffffff;
+}
+
+.conteinerQuizes{
+    height: 100vh;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.divLabelInput{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 10px;
+}
+
+img{
+    width: 100%;
+}
+
+a{
+    display: inline-block;
+}
+
+input{
+    height: 35px;
+    border-radius: 30px;
+    border: 1px solid var(--colorPrimary);
+    padding: 5px 10px;
+}
+
+input::placeholder{
+    color: var(--colorPrimary);
+    opacity: 30%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+    /* background-color: #ffffff; */
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+    color: var(--colorSecundary);
+    text-decoration: none;
+    /* font-size: 16px; */
+    cursor: pointer;
+}
+
+.step-indicator span{
+    /* font-weight: bold; */
+    /* font-size: 18px; */
+    color: var(--colorSecundary);
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    /* height: 30px; */
+    width: 42px;
+}
+
+.progress-container {
+    width: 100%;
+    /* max-width: 300px; */
+    height: 8px;
+    background-color: var(--colorPrimary);
+    border-radius: 4px;
+    overflow: hidden;
+    /* margin: 0px 0px 20px; */
+}
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: var(--colorSecundary); /* Cor laranja */
+    transition: width 0.3s ease;
+}
+
+.conteiner02{
+    width: min(100%, 800px);
+    margin: 15px auto 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.conteinerInputs_Next{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.conteiner02 > p{
+    text-align: center;
+}
+
+.conteiner02 .imagesGeners{
+    display: flex;
+    justify-content: center;
+    gap: 2.5em;
+    padding: 10px 0px;
+}
+
+.imageGirl, .imageMen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p.girl, p.men{
+    transition: .5s all;
+}
+
+.imageGirl p.activeGirl{
+    color: var(--colorGirl);
+    font-weight: 600;
+}
+
+.imageMen p.activeMen{
+    color: var(--colorMen);
+    font-weight: 600;
+}
+
+.imageGirl:hover > p.girl{
+    color: var(--colorGirl);
+    font-weight: 600;
+}
+
+.imageMen:hover > p.men{
+    color: var(--colorMen);
+    font-weight: 600;
+}
+
+.buttonNext{
+    width: min(100%, 800px);
+    margin: 5px auto 10px;
+    padding: 10px;
+    background-color: var(--colorSecundary);
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+}

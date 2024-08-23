@@ -1,18 +1,40 @@
 //component LABEL + INPUT TEXT
 //labelText <- texto do label
 //id <- id do label e input text
-export function labelInputTextName(labelText, id) {
+export function labelInputTextName(labelText, id, key) {
     const label = document.createElement("label");
     const inputText = document.createElement("input");
+    const divLabelInput = document.createElement("div");
+
+    divLabelInput.classList.add("divLabelInput");
 
     label.setAttribute("for", id);
     inputText.setAttribute("type", "text");
     inputText.setAttribute("id", id);
+    inputText.setAttribute("placeholder", "Digite aqui");
+
+
+    inputText.required = true;
 
     label.innerHTML = labelText;
 
-    return [label, inputText];
+    divLabelInput.appendChild(label);
+    divLabelInput.appendChild(inputText);
+
+    // Verifica se o botão existe
+    let btn = document.querySelector(".btn");
+
+    if (btn){
+        btn.addEventListener("click", () => {
+            if (inputText) {
+                localStorage.setItem(key, inputText.value);
+            }
+        });
+    }
+
+    return divLabelInput;
 }
+
 
 
 // export function labelInputTextName(labelText, id) {

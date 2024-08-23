@@ -1,32 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        body{
-            background-color: rgb(55, 55, 55);
-            /* background-image: url(assets/images/navbar.png); */
-        }
-
-        .conteiner{
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        a{
-            padding: 50px;
-            display: inline-block;
-            background-color: aqua;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Quiz - Paraízo Viagens</title>
 </head>
 <body>
-    <div class="conteiner">
-        <!-- <input type="text" name="" id="idText"> -->
+    <div class="conteinerStart">
+        
+    </div>
+
+    <div class="conteinerQuizes">
+        <div class="blockConteiner">
+            <header class="header">
+                <a href="#" class="back-button">
+                    <img src="./assets/images/previous-icon.svg" alt="">
+                    voltar
+                </a>
+                <div class="step-indicator">
+                    <span id="currentStep">0</span>
+                    <span>/</span>
+                    <span id="totalSteps">0</span>
+                </div>
+                <div class="logo">
+                    <img src="../../public/logo - paraizo viagens.svg" alt="Logo">
+                </div>
+            </header>
+
+            <div class="progress-container">
+                <div class="progress-bar" data-steps="14" data-current-step="0"></div>
+            </div>
+
+            <div class="conteiner02">
+                <p>
+                    Qual é seu genero?
+                </p>
+                <div class="imagesGeners">
+                    <div class="imageGirl">
+                        <img src="assets/images/imageGirl.png" alt="">
+                        <p class="girl">
+                            Feminino
+                        </p>
+                    </div>
+                    <div class="imageMen">
+                        <img src="assets/images/imageMen.png" alt="">
+                        <p class="men">
+                            Masculino
+                        </p>
+                    </div>
+                </div>
+                <div class="conteinerInputs_Next">
+                    <div class="blockInputs"></div>
+                </div>
+            </div>
+        </div>
+
+        <a class="buttonNext" href=""></a>
+    </div>
+
+    <div class="conteinerEnd">
+        
     </div>
 
     <script type="module" src="script.js"></script>

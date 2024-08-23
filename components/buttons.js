@@ -1,8 +1,9 @@
 //component BUTTONS
 //containerQuiz <- vai mostrar o proximo conteiner ao clicar no "Proximo"
 export function buttonNext(containerQuiz, text = "Proximo"){
-    let a = document.createElement("a");
+    let a = document.querySelector(".buttonNext");
     a.innerHTML = text;
+    // a.classList.add("buttoNext");
 
     a.addEventListener("click", (e) =>{
         e.preventDefault();
