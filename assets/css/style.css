@@ -72,7 +72,7 @@ input{
 
 input::placeholder{
     color: var(--colorPrimary);
-    opacity: 30%;
+    opacity: 40%;
 }
 
 .header {

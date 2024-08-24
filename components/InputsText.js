@@ -1,7 +1,7 @@
 //component LABEL + INPUT TEXT
 //labelText <- texto do label
 //id <- id do label e input text
-export function labelInputTextName(labelText, id, key) {
+export function labelInputTextName(labelText, id, key, placeholder) {
     const label = document.createElement("label");
     const inputText = document.createElement("input");
     const divLabelInput = document.createElement("div");
@@ -11,7 +11,7 @@ export function labelInputTextName(labelText, id, key) {
     label.setAttribute("for", id);
     inputText.setAttribute("type", "text");
     inputText.setAttribute("id", id);
-    inputText.setAttribute("placeholder", "Digite aqui");
+    inputText.setAttribute("placeholder", placeholder);
 
 
     inputText.required = true;

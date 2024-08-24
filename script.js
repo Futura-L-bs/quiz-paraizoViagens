@@ -48,9 +48,9 @@ imageMen.addEventListener("click", () => {
 buttonNext();
 
 // adicionando inputs + label
-const labelInputName01 = labelInputTextName("Digite seu nome:", "idTextNome", "nome");
-const labelInputName02 = labelInputTextName("Digite seu sobrenome:", "idTextSobrenome", "sobrenome");
-const labelInputName03 = labelInputTextName("Digite seu telefone:", "idTextTelefone", "telefone");
+const labelInputName01 = labelInputTextName("Digite seu nome:", "idTextNome", "nome", "seu nome");
+const labelInputName02 = labelInputTextName("Digite seu sobrenome:", "idTextSobrenome", "sobrenome", "seu sobrenome");
+const labelInputName03 = labelInputTextName("Digite seu telefone:", "idTextTelefone", "telefone", "99 99999 9999");
 
 
 blockInputs.appendChild(labelInputName01);
