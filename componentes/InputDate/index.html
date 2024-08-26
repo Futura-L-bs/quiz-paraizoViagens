@@ -49,37 +49,41 @@
     </div>
 
     <script>
-        function formatDate(input) {
-            let value = input.value.replace(/\D/g, '').slice(0, 8);
-            let formattedValue = '';
 
-            if (value.length > 0) {
-                formattedValue += value.substr(0, 2);
-            }
-            if (value.length > 2) {
-                formattedValue += '/' + value.substr(2, 2);
-            }
-            if (value.length > 4) {
-                formattedValue += '/' + value.substr(4, 4);
+        export function InputDate (){
+            function formatDate(input) {
+                let value = input.value.replace(/\D/g, '').slice(0, 8);
+                let formattedValue = '';
+
+                if (value.length > 0) {
+                    formattedValue += value.substr(0, 2);
+                }
+                if (value.length > 2) {
+                    formattedValue += '/' + value.substr(2, 2);
+                }
+                if (value.length > 4) {
+                    formattedValue += '/' + value.substr(4, 4);
+                }
+
+                input.value = formattedValue;
             }
 
-            input.value = formattedValue;
+            document.getElementById('dateInput').addEventListener('input', function(e) {
+                formatDate(this);
+            });
+
+            document.getElementById('dateInput').addEventListener('keydown', function(e) {
+                if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        return;
+                }
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
         }
 
-        document.getElementById('dateInput').addEventListener('input', function(e) {
-            formatDate(this);
-        });
-
-        document.getElementById('dateInput').addEventListener('keydown', function(e) {
-            if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
-                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
-                (e.keyCode >= 35 && e.keyCode <= 40)) {
-                    return;
-            }
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });
     </script>
 </body>
 </html>

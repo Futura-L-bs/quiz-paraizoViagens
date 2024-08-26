@@ -8,10 +8,6 @@
     <title>Quiz - Paraízo Viagens</title>
 </head>
 <body>
-    <div class="conteinerStart">
-        
-    </div>
-
     <div class="conteinerQuizes">
         <div class="blockConteiner">
             <header class="header">
@@ -20,9 +16,9 @@
                     voltar
                 </a>
                 <div class="step-indicator">
-                    <span id="currentStep">0</span>
+                    <span id="currentStep">1</span>
                     <span>/</span>
-                    <span id="totalSteps">0</span>
+                    <span id="totalSteps">15</span>
                 </div>
                 <div class="logo">
                     <img src="../../public/logo - paraizo viagens.svg" alt="Logo">
@@ -30,38 +26,46 @@
             </header>
 
             <div class="progress-container">
-                <div class="progress-bar" data-steps="14" data-current-step="0"></div>
+                <div class="progress-bar" data-steps="15" data-current-step="1"></div>
             </div>
 
             <div class="conteiner02">
-                <p>
-                    Qual é seu genero?
-                </p>
-                <div class="imagesGeners">
-                    <div class="imageGirl">
-                        <img src="assets/images/imageGirl.png" alt="">
-                        <p class="girl">
-                            Feminino
-                        </p>
+                <!-- Etapa 1: Gênero -->
+                <div id="step1" class="step-container">
+                    <p>Qual é seu gênero?</p>
+                    <div class="imagesGeners">
+                        <div class="imageGirl">
+                            <img src="assets/images/imageGirl.png" alt="">
+                            <p class="girl">Feminino</p>
+                        </div>
+                        <div class="imageMen">
+                            <img src="assets/images/imageMen.png" alt="">
+                            <p class="men">Masculino</p>
+                        </div>
                     </div>
-                    <div class="imageMen">
-                        <img src="assets/images/imageMen.png" alt="">
-                        <p class="men">
-                            Masculino
-                        </p>
+
+                    <div class="blockInputs">
+                        <!-- Os inputs serão adicionados aqui via JavaScript -->
                     </div>
                 </div>
-                <div class="conteinerInputs_Next">
-                    <div class="blockInputs"></div>
+                
+                <!-- Etapa 2: Informações Pessoais -->
+                <div id="step2" class="step-container" style="display: none;">
+                    <div class="blockInputs">
+                        <!-- Os inputs serão adicionados aqui via JavaScript -->
+                    </div>
                 </div>
+
+                <!-- Etapa 3: E-mail -->
+                <div id="step3" class="step-container" style="display: none;">
+                   
+                </div>
+
+                <!-- Adicione mais contêineres para etapas adicionais conforme necessário -->
             </div>
         </div>
 
-        <a class="buttonNext btn" href=""></a>
-    </div>
-
-    <div class="conteinerEnd">
-        
+        <a class="buttonNext btn" href="#">Próximo</a>
     </div>
 
     <script type="module" src="script.js"></script>

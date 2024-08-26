@@ -192,3 +192,30 @@ p.girl, p.men{
     text-align: center;
     cursor: pointer;
 }
+
+.input-container {
+    width: 100%;
+    max-width: 150px;
+    
+}
+.date-input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px; 
+    border: 1px solid #23242C;
+    border-radius: 15px; 
+    color: #23242C;
+    outline: none;
+    box-sizing: border-box;
+}
+.date-input::placeholder {
+    color: #23242C;
+    opacity: 0.5;
+}
+label {
+    display: block;
+    margin-bottom: 4px;
+    color: #23242C;
+    font-weight: bold;
+    font-size: 14px;
+}

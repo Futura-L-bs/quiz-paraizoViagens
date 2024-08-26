@@ -1,165 +1,115 @@
-//Imports
+// Importações
 import { labelInputTextName } from "./components/InputsText.js";
 import { buttonNext } from "./components/buttons.js";
 import { buttonPrevious } from "./components/buttons.js";
 import { imageBackground } from "./components/image.js";
+import {InputDate} from "./componentes/InputDate/InputDate.js"
 
-// variaveis
-let blockInputs = document.querySelector(".conteiner02 .blockInputs");
-let Button_Next = document.querySelector(".buttonNext");
-let back_button = document.querySelector(".back-button");
+// Variáveis globais
+let currentStep = 1;
+const totalSteps = 15; // Total teórico de passos
+const implementedSteps = 3; // Número de passos realmente implementados
 
-let imageGirl = document.querySelector(".imageGirl");
-let imageMen = document.querySelector(".imageMen");
+// Função de inicialização
+function init() {
+    // Inicializar elementos
+    const nextButton = document.querySelector(".buttonNext");
+    const imageGirl = document.querySelector(".imageGirl");
+    const imageMen = document.querySelector(".imageMen");
 
-let girl = 0;
-let men = 0;
+    // Substituir o botão de voltar existente pelo importado
+    const backButtonContainer = document.querySelector(".back-button").parentNode;
+    const oldBackButton = document.querySelector(".back-button");
+    const newBackButton = buttonPrevious();
+    
+    // Criar um contêiner para o novo botão e o ícone
+    const backButtonWrapper = document.createElement('div');
+    backButtonWrapper.className = 'back-button-wrapper';
+    
+    // Criar o ícone usando imageBackground
+    const backIcon = document.createElement('span');
+    imageBackground(backIcon, 'previous-icon.svg');
+    backIcon.className = 'back-icon';
+    
+    // Adicionar o ícone e o novo botão ao wrapper
+    backButtonWrapper.appendChild(backIcon);
+    backButtonWrapper.appendChild(newBackButton);
+    
+    // Substituir o antigo botão pelo novo wrapper
+    backButtonContainer.replaceChild(backButtonWrapper, oldBackButton);
 
-let pMen = document.querySelector(".men");
-let pGirl = document.querySelector(".girl");
+    // Adicionar event listeners
+    nextButton.addEventListener("click", nextStep);
+    newBackButton.addEventListener("click", previousStep);
+    imageGirl.addEventListener("click", () => selectGender('girl'));
+    imageMen.addEventListener("click", () => selectGender('men'));
 
-//escolha de genero:
-imageGirl.addEventListener("click", () => {
-    girl = 1;
-    console.log("Mulher");
-    console.log(girl);
+    // Inicializar inputs para etapas 2 e 3
+    initializeInputs();
 
-    pGirl.classList.add("activeGirl");
-    if (men > 0) {
-        men = 0;
+    // Atualizar indicador de etapa
+    updateStepIndicator();
+}
+
+function initializeInputs() {
+    const step1Inputs = document.querySelector("#step1 .blockInputs");
+    step1Inputs.appendChild(labelInputTextName("Digite seu nome:", "idTextNome", "nome", "seu nome"));
+    step1Inputs.appendChild(labelInputTextName("Digite seu sobrenome:", "idTextSobrenome", "sobrenome", "seu sobrenome"));
+    step1Inputs.appendChild(labelInputTextName("Digite seu telefone:", "idTextTelefone", "telefone", "99 99999 9999"));
+
+    const step2Inputs = document.querySelector("#step2 .blockInputs");
+    step2Inputs.appendChild(labelInputTextName("Digite seu e-mail:", "idTextEmail", "email", "seu@email.com"));
+    step2Inputs.appendChild(InputDate("Data de nascimento:", "idTextDataNascimento", "dataNascimento", "dd/mm/aaaa"));
+
+}
+
+function selectGender(gender) {
+    const pGirl = document.querySelector(".girl");
+    const pMen = document.querySelector(".men");
+    
+    if (gender === 'girl') {
+        pGirl.classList.add("activeGirl");
         pMen.classList.remove("activeMen");
-    }
-});
-
-imageMen.addEventListener("click", () => {
-    men = 1;
-    console.log("Homem");
-    console.log(men);
-
-    pMen.classList.add("activeMen");
-    if (girl > 0) {
-        girl = 0;
+    } else {
+        pMen.classList.add("activeMen");
         pGirl.classList.remove("activeGirl");
     }
-});
-
-
-//função botão Next
-buttonNext();
-
-// adicionando inputs + label
-const labelInputName01 = labelInputTextName("Digite seu nome:", "idTextNome", "nome", "seu nome");
-const labelInputName02 = labelInputTextName("Digite seu sobrenome:", "idTextSobrenome", "sobrenome", "seu sobrenome");
-const labelInputName03 = labelInputTextName("Digite seu telefone:", "idTextTelefone", "telefone", "99 99999 9999");
-
-
-blockInputs.appendChild(labelInputName01);
-blockInputs.appendChild(labelInputName02);
-blockInputs.appendChild(labelInputName03);
-
-// conteiner02.appendChild(buttonPrevious());
-
-// barra de progresso
-class StepProgressBar {
-    constructor(element) {
-        this.progressBar = element;
-        this.totalSteps = parseInt(element.getAttribute('data-steps') || 1);
-        this.currentStep = parseInt(element.getAttribute('data-current-step') || 0);
-        this.update();
-    }
-
-    update() {
-        const progress = (this.currentStep / this.totalSteps) * 100;
-        this.progressBar.style.width = `${progress}%`;
-    }
-
-    setStep(step) {
-        this.currentStep = Math.min(this.totalSteps, Math.max(0, step));
-        this.update();
-    }
-
-    nextStep() {
-        this.setStep(this.currentStep + 1);
-    }
-
-    previousStep() {
-        this.setStep(this.currentStep - 1);
-    }
 }
 
-let progressBar;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const progressElement = document.querySelector('.progress-bar');
-    progressBar = new StepProgressBar(progressElement);
-});
-
-function updateProgress(change) {
-    if (change > 0) {
-        progressBar.nextStep();
-    } else {
-        progressBar.previousStep();
-    }
-}
-
-Button_Next.addEventListener("click", () =>{
-    updateProgress(1);
-    nextStep();
-})
-
-back_button.addEventListener("click", () =>{
-    updateProgress(-1);
-    goBack();
-})
-
-// --------------------------------------
-
-// indicador numerico
-class StepIndicator {
-    constructor(totalSteps) {
-        this.currentStep = 1; 
-        this.totalSteps = totalSteps;
-        this.currentStepElement = document.getElementById('currentStep');
-        this.totalStepsElement = document.getElementById('totalSteps');
-        this.updateDisplay();
-    }
-
-    updateDisplay() {
-        this.currentStepElement.textContent = this.currentStep;
-        this.totalStepsElement.textContent = this.totalSteps;
-    }
-
-    nextStep() {
-        if (this.currentStep < this.totalSteps) {
-            this.currentStep++;
-            this.updateDisplay();
-        }
-    }
-
-    previousStep() {
-        if (this.currentStep > 1) {
-            this.currentStep--;
-            this.updateDisplay();
-        }
-    }
-
-    setStep(step) {
-        this.currentStep = Math.max(1, Math.min(step, this.totalSteps));
-        this.updateDisplay();
-    }
-}
-
-// Inicialize o componente com o número total de etapas
-const stepIndicator = new StepIndicator(15);
-
-// Função para o botão voltar
-function goBack() {
-    stepIndicator.previousStep();
-    console.log("Voltando para a etapa", stepIndicator.currentStep);
-}
-
-// Função para o botão de próxima etapa
 function nextStep() {
-    stepIndicator.nextStep();
-    console.log("Avançando para a etapa", stepIndicator.currentStep);
+    if (currentStep < implementedSteps) {
+        document.getElementById(`step${currentStep}`).style.display = 'none';
+        currentStep++;
+        document.getElementById(`step${currentStep}`).style.display = 'block';
+        updateStepIndicator();
+        updateProgressBar();
+    } else {
+        console.log("Último passo implementado atingido.");
+        // Aqui você pode adicionar uma lógica para finalizar o formulário
+    }
 }
+
+function previousStep(event) {
+    event.preventDefault(); 
+    if (currentStep > 1) {
+        document.getElementById(`step${currentStep}`).style.display = 'none';
+        currentStep--;
+        document.getElementById(`step${currentStep}`).style.display = 'block';
+        updateStepIndicator();
+        updateProgressBar();
+    }
+}
+
+function updateStepIndicator() {
+    document.getElementById('currentStep').textContent = currentStep;
+    document.getElementById('totalSteps').textContent = totalSteps;
+}
+
+function updateProgressBar() {
+    const progressBar = document.querySelector('.progress-bar');
+    const progress = (currentStep / totalSteps) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+// Inicializar quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', init);
