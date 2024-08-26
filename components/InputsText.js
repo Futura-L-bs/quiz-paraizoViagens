@@ -12,6 +12,7 @@ export function labelInputTextName(labelText, id, key, placeholder) {
     inputText.setAttribute("type", "text");
     inputText.setAttribute("id", id);
     inputText.setAttribute("placeholder", placeholder);
+     
 
 
     inputText.required = true;
