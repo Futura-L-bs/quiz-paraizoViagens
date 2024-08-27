@@ -3,12 +3,13 @@ import { labelInputTextName } from "./components/InputsText.js";
 import { buttonNext } from "./components/buttons.js";
 import { buttonPrevious } from "./components/buttons.js";
 import { imageBackground } from "./components/image.js";
-import {InputDate} from "./componentes/InputDate/InputDate.js"
+import { InputDate } from "./componentes/InputDate/InputDate.js"
+import { checkboxRadio } from "./componentes/CheckBoxRadio/CheckBoxRadio.js";
 
 // Variáveis globais
 let currentStep = 1;
 const totalSteps = 15; // Total teórico de passos
-const implementedSteps = 3; // Número de passos realmente implementados
+const implementedSteps = 6; // Número de passos realmente implementados
 
 // Função de inicialização
 function init() {
@@ -44,7 +45,7 @@ function init() {
     imageGirl.addEventListener("click", () => selectGender('girl'));
     imageMen.addEventListener("click", () => selectGender('men'));
 
-    // Inicializar inputs para etapas 2 e 3
+    // Inicializar inputs para etapas 1 a 5
     initializeInputs();
 
     // Atualizar indicador de etapa
@@ -61,6 +62,47 @@ function initializeInputs() {
     step2Inputs.appendChild(labelInputTextName("Digite seu e-mail:", "idTextEmail", "email", "seu@email.com"));
     step2Inputs.appendChild(InputDate("Data de nascimento:", "idTextDataNascimento", "dataNascimento", "dd/mm/aaaa"));
 
+    const step3Options = [
+        { value: "amo_viajar", label: "Simm, amo viajar!" },
+        { value: "ainda_nao", label: "Ainda não :(" }
+    ]; 
+    const step3Inputs = document.querySelector("#step3 .blockInputs");
+    step3Inputs.appendChild(checkboxRadio("Você gosta de viajar?", "Já viajou esse ano?", step3Options, "viajou_esse_ano?"));
+
+    const step4Inputs = document.querySelector("#step4 .blockInputs");
+    step4Inputs.appendChild(labelInputTextName("Digite seu desejo de destino:", "idTextDestino", "destino", ""));
+    
+    const step5Options = [
+        { value: "possuo_data", label: "Sim, ja tenho uma data programada" },
+        { value: "decidindo_data", label: "Ainda nao, estou decidindo as datas e possuo flexibilidade" }
+    ]; 
+    const step5Inputs = document.querySelector("#step5 .blockInputs");
+    step5Inputs.appendChild(checkboxRadio("", "data programada ou possui flexibilidade?", step5Options, "possuo_data?"));
+}
+
+function initializeStep6() {
+    const step6Inputs = document.querySelector("#step6 .blockInputs");
+    step6Inputs.innerHTML = ''; 
+
+    const etapa5Resposta = localStorage.getItem('possuo_data?');
+
+    if (etapa5Resposta === 'possuo_data') {
+        const semDataOptions = [
+            { value: "ida_sem_data_definida", label: "Ida sem data definida" },
+            { value: "volta_sem_data_definida", label: "Volta sem data definida" },
+        ];
+
+       
+
+        step6Inputs.appendChild(InputDate("Data de ida:", "idTextDataDeIda", "data_de_ida", "dd/mm/aaaa"));
+        step6Inputs.appendChild(checkboxRadio("", "", semDataOptions, "sem_data_ida"));
+
+        step6Inputs.appendChild(InputDate("Data de volta:", "idTextDataDeVolta", "data_de_volta", "dd/mm/aaaa"));
+        step6Inputs.appendChild(checkboxRadio("", "", semDataOptions, "sem_data_volta"));
+    } else {
+        
+        step6Inputs.appendChild(labelInputTextName("Digite quantos dias você deseja:", "idDiasDeViagem", "dias_de_viagem", ""));
+    }
 }
 
 function selectGender(gender) {
@@ -80,6 +122,12 @@ function nextStep() {
     if (currentStep < implementedSteps) {
         document.getElementById(`step${currentStep}`).style.display = 'none';
         currentStep++;
+
+        // Se estamos entrando na etapa 6, inicialize-a
+        if (currentStep === 6) {
+            initializeStep6();
+        }
+
         document.getElementById(`step${currentStep}`).style.display = 'block';
         updateStepIndicator();
         updateProgressBar();
