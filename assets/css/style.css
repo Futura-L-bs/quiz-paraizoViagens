@@ -45,10 +45,19 @@ body{
     display: none;
 }
 
+.conteinerStart{
+    display: none;
+}
+
+.conteinerEnd{
+    /* display: none; */
+}
+
 .conteinerQuizes{
     height: calc(100vh);
     padding: 0px 20px;
     display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -73,7 +82,7 @@ p, label{
     text-align: center;
 }
 
-label{
+label, span{
     line-height: 1.1em;
     text-align: start;
 }
@@ -88,6 +97,76 @@ input{
 input::placeholder{
     color: var(--colorPrimary);
     opacity: 40%;
+}
+
+.logoStart{
+    display: flex;
+    justify-content: center;
+    background-color: var(--colorPrimary);
+    clip-path: ellipse(75% 95% at 50% 0%);
+    padding: 15px 0;
+}
+
+.logoStart img{
+    width: 60px;
+}
+
+.blockStart{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 15px;
+    width: min(100%, 500px);
+    margin: 15px auto 0px;
+    padding: 0px 20px 20px;
+}
+
+.blockStart h2{
+    font-size: 33px;
+    line-height: 1.1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.buttonStart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttonStart img{
+    width: 20px;
+}
+
+.conteinerButtonStart{
+    width: 100%;
+}
+
+.blockStart .buttonStart{
+    width: min(100%, 500px);
+    margin: 0px auto;
+    padding: 10px;
+    color: white;
+    background-color: var(--colorSecundary);
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.blockStart p.privacidadeTermos{
+    font-size: 10px;
+}
+
+
+.blockStart a.termos{
+    color: var(--colorSecundary);
+    font-size: 10px;
+}
+
+.worldImage img{
+    width: 270px;
 }
 
 .header {

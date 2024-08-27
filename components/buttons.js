@@ -1,7 +1,7 @@
 //component BUTTONS
 //containerQuiz <- vai mostrar o proximo conteiner ao clicar no "Proximo"
 export function buttonNext(containerQuiz, text = "Proximo"){
-    let a = document.querySelector(".buttonNext");
+    let a = document.querySelector("a.buttonNext");
     a.innerHTML = text;
     // a.classList.add("buttoNext");
 
@@ -20,7 +20,7 @@ export function buttonNext(containerQuiz, text = "Proximo"){
 
 //containerQuizPrevious <- vai mostrar o conteiner anterior ao clicar no "voltar"
 export function buttonPrevious(containerQuizPrevious, text = "Voltar"){
-    let a = document.createElement("a");
+    let a = document.createElement("a.back-button");
     a.innerHTML = text;
 
     a.addEventListener("click", (e) =>{
