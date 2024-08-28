@@ -55,7 +55,7 @@ body{
     height: calc(100vh);
     padding: 0px 20px;
     display: flex;
-    /* display: none; */
+    
     flex-direction: column;
     justify-content: space-between;
 }
