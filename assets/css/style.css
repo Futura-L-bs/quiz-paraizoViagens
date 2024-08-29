@@ -52,7 +52,7 @@ body{
 
 
 .conteinerQuizes{
-    height: calc(100vh);
+    height: 95vh;
     padding: 0px 20px;
     display: flex;
     
@@ -326,7 +326,7 @@ input::placeholder{
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 p.girl, p.men{
