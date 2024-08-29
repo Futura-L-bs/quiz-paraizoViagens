@@ -285,7 +285,7 @@ input::placeholder{
     transition: width 0.3s ease;
 }
 
-.conteiner02, .conteiner03, .conteiner04, .conteiner05, .conteiner06, .conteiner07, .conteiner08, .conteiner09, .conteiner10, .conteiner11, .conteiner12, .conteiner13, .conteiner14, .conteiner15{
+.conteiner02, .conteiner03, .conteiner04, .conteiner05, .conteiner06, .conteiner07, .conteiner08, .conteiner09, .conteiner10, .conteiner11, .conteiner12, .conteiner13, .conteiner14, .conteiner15, .conteiner16, .conteiner17, .conteiner19{
     width: min(100%, 500px);
     margin: 15px auto 0px;
 }
