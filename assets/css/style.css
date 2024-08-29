@@ -326,6 +326,7 @@ input::placeholder{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 p.girl, p.men{
