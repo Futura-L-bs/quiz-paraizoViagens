@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Progresso Baseada em Etapas</title>
+    <style>
+        .progress-container {
+            width: 100%;
+            max-width: 300px;
+            height: 8px;
+            background-color: #000000;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #FFA500; /* Cor laranja */
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" data-steps="5" data-current-step="2"></div>
+    </div>
+
+    <button onclick="updateProgress(1)">Próxima Etapa</button>
+    <button onclick="updateProgress(-1)">Etapa Anterior</button>
+
+    <script>
+        class StepProgressBar {
+            constructor(element) {
+                this.progressBar = element;
+                this.totalSteps = parseInt(element.getAttribute('data-steps') || 1);
+                this.currentStep = parseInt(element.getAttribute('data-current-step') || 0);
+                this.update();
+            }
+
+            update() {
+                const progress = (this.currentStep / this.totalSteps) * 100;
+                this.progressBar.style.width = `${progress}%`;
+            }
+
+            setStep(step) {
+                this.currentStep = Math.min(this.totalSteps, Math.max(0, step));
+                this.update();
+            }
+
+            nextStep() {
+                this.setStep(this.currentStep + 1);
+            }
+
+            previousStep() {
+                this.setStep(this.currentStep - 1);
+            }
+        }
+
+        let progressBar;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressElement = document.querySelector('.progress-bar');
+            progressBar = new StepProgressBar(progressElement);
+        });
+
+        function updateProgress(change) {
+            if (change > 0) {
+                progressBar.nextStep();
+            } else {
+                progressBar.previousStep();
+            }
+        }
+    </script>
+</body>
+</html>
